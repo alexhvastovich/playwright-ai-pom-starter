@@ -12,7 +12,7 @@ skills/                        Repository-specific workflows and conventions
     |
     v
 pages/                         Page Objects plus the lazy POM manager
-fixtures/pom.fixture.ts        Test-scoped manager and data injection
+fixtures/pom.fixture.ts        Test-scoped unified manager injection
 test-data/                     Public-safe scenario data
     |
     v
@@ -30,7 +30,7 @@ npm run check                  TypeScript + deterministic Playwright gate
 | --- | --- | --- |
 | `specs/` | Scenarios, IDs, steps, expected results | Selectors or implementation |
 | `pages/` | Page Objects and lazy manager | Scenario-specific test data |
-| `fixtures/` | Test-scoped manager/data injection | Product behavior |
+| `fixtures/` | Test-scoped unified manager injection | Product behavior or test data |
 | `test-data/` | Public-safe reusable scenario data | Secrets or browser actions |
 | `tests/` | Scenario flow and outcomes | Raw selectors or page construction |
 | `seeds/` | Planner/generator environment entry points | Product coverage |

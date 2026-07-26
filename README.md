@@ -126,8 +126,9 @@ private get submitButton(): Locator {
 ```
 
 `pages/ManagePage.ts` contains the lazy `PomManager`.
-`fixtures/pom.fixture.ts` creates one manager per test and injects reusable data
-from `test-data/`. Tests receive one consistent entry point: `pm`.
+`fixtures/pom.fixture.ts` creates one manager per test and exposes only the
+unified `pm` entry point. Tests import reusable public data directly from
+`test-data/`.
 `LoginPage` owns the login form, while `SecurePage` verifies that successful
 navigation rendered the authenticated destination.
 
@@ -151,9 +152,9 @@ pages/
   SecurePage.ts
   ManagePage.ts          # lazy PomManager
 fixtures/
-  pom.fixture.ts         # test-scoped dependency injection
+  pom.fixture.ts         # exposes only the unified pm fixture
 test-data/
-  validUser.ts           # public-safe reusable data
+  validUser.ts           # imported directly by tests
 tests/
   login/
 ```

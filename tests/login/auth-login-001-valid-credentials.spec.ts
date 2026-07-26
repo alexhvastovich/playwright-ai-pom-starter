@@ -2,9 +2,10 @@
 // seed: seeds/login.seed.spec.ts
 
 import { test } from '../../fixtures/pom.fixture';
+import { validUser } from '../../test-data/validUser';
 
 test.describe('Authentication / Login', () => {
-  test('AUTH-LOGIN-001 accepts documented demo credentials', async ({ pm, validUser }) => {
+  test('AUTH-LOGIN-001 accepts documented demo credentials', async ({ pm }) => {
     await pm.loginPage.open();
     await pm.loginPage.expectLoaded();
     await pm.loginPage.login(validUser.username, validUser.password);
