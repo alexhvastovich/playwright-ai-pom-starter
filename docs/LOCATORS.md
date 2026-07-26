@@ -28,5 +28,5 @@ The test never sees either locator. It asks the page object to perform a
 business action:
 
 ```ts
-await pm.login.login('BestStudent', 'Password123!');
+await pm.loginPage.login('BestStudent', 'Password123!');
 ```

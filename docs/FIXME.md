@@ -27,9 +27,9 @@ test('AUTH-LOGIN-001 accepts documented demo credentials', async ({ pm }) => {
     'BUG-142: Valid login returns 500; expected the secure page.',
   );
 
-  await pm.login.open();
-  await pm.login.login('BestStudent', 'Password123!');
-  await pm.secure.expectLoaded();
+  await pm.loginPage.open();
+  await pm.loginPage.login('BestStudent', 'Password123!');
+  await pm.securePage.expectLoaded();
 });
 ```
 

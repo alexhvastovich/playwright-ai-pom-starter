@@ -20,7 +20,8 @@ Trace, screenshot, root-cause analysis
 - `skills/add-playwright-test/SKILL.md` gives the agent a repeatable workflow.
 - `specs/` records intent before implementation.
 - `pages/` owns locators and browser mechanics.
-- `fixtures/pom.ts` provides one lazy entry point.
+- `pages/ManagePage.ts` owns lazy Page Object construction.
+- `fixtures/pom.fixture.ts` injects the manager and shared test data.
 - `tests/` remain short and describe behavior.
 - `npm run check` is the gate. AI code does not bypass it.
 

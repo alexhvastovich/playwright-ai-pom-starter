@@ -6,7 +6,7 @@ small, public-safe, and runnable against `https://alexusadays.com`.
 ## Architecture
 
 - Put selectors and browser actions in `pages/`.
-- Access page objects through the lazy `pm` fixture in `fixtures/pom.ts`.
+- Access page objects through `PomManager` via `fixtures/pom.fixture.ts`.
 - Keep assertions about page behavior in page objects when they describe a
   reusable page contract; keep scenario outcomes in tests.
 - Never instantiate page objects directly in a test.
@@ -24,9 +24,10 @@ must explain what the element means, not how the current DOM happens to look.
 
 ## Test rules
 
-- Import `test` and `expect` from `fixtures/pom`.
+- Import `test` and `expect` from `fixtures/pom.fixture`.
 - Apply `skills/name-playwright-test/SKILL.md` to every new or renamed scenario.
 - Keep the same stable test case ID in the spec, file name, and test title.
+- Add every Page Object to `pages/ManagePage.ts` as a lazy getter.
 - Use web-first assertions.
 - Never use `waitForTimeout`.
 - Keep tests independent and safe to run in parallel.

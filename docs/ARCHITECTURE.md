@@ -11,8 +11,9 @@ specs/                         Human-readable intent and stable test case IDs
 skills/                        Repository-specific workflows and conventions
     |
     v
-pages/                         Locators, navigation, and reusable page contracts
-fixtures/pom.ts                Test-scoped lazy Page Object manager
+pages/                         Page Objects plus the lazy POM manager
+fixtures/pom.fixture.ts        Test-scoped manager and data injection
+test-data/                     Public-safe scenario data
     |
     v
 tests/                         Short, behavior-focused scenarios
@@ -28,8 +29,9 @@ npm run check                  TypeScript + deterministic Playwright gate
 | Path | Owns | Must not own |
 | --- | --- | --- |
 | `specs/` | Scenarios, IDs, steps, expected results | Selectors or implementation |
-| `pages/` | Locators and browser actions | Scenario-specific test data |
-| `fixtures/` | Test-scoped object construction | Product behavior |
+| `pages/` | Page Objects and lazy manager | Scenario-specific test data |
+| `fixtures/` | Test-scoped manager/data injection | Product behavior |
+| `test-data/` | Public-safe reusable scenario data | Secrets or browser actions |
 | `tests/` | Scenario flow and outcomes | Raw selectors or page construction |
 | `seeds/` | Planner/generator environment entry points | Product coverage |
 | `skills/` | Repeatable agent procedures | Generated agent definitions |
@@ -41,16 +43,16 @@ Tests import the fixture. The fixture constructs Page Objects. Page Objects use
 Playwright. Dependencies do not point back toward tests.
 
 ```text
-test -> pm fixture -> Page Object -> Playwright Page
+test -> POM fixture -> PomManager -> Page Object -> Playwright Page
 ```
 
 This keeps a selector change inside one Page Object and prevents generated
 tests from inventing competing patterns.
 
-`PageManager` is test-scoped and lazy: each getter constructs its Page Object
-on first access with `??=` and reuses that instance for the remainder of the
-test. Adding a Page Object requires a matching lazy getter rather than direct
-construction inside a scenario.
+`PomManager` lives in `pages/ManagePage.ts` and is test-scoped and lazy: each
+getter constructs its Page Object on first access with `??=` and reuses that
+instance for the remainder of the test. Adding a Page Object requires a
+matching lazy getter rather than direct construction inside a scenario.
 
 ## AI boundary
 
