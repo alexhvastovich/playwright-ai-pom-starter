@@ -11,6 +11,11 @@ Target: `https://alexusadays.com/login`
 
 ## Scenarios
 
-1. Submit `BestStudent` / `Password123!` and verify successful navigation.
-2. Submit an incorrect password and verify “Invalid credentials. Please try
-   again.”
+### AUTH-LOGIN-001 Valid credentials
+
+Submit `BestStudent` / `Password123!` and verify successful navigation.
+
+### AUTH-LOGIN-002 Invalid credentials
+
+Submit an incorrect password and verify “Invalid credentials. Please try
+again.”

@@ -2,8 +2,26 @@
 
 A small public project showing how an AI coding agent can work inside a
 maintainable Playwright architecture instead of generating disposable scripts.
-The examples run against the educational login page at
-[alexusadays.com/login](https://alexusadays.com/login).
+It accompanies the [Alex U.S.A. Days YouTube channel](https://www.youtube.com/@alexusadays)
+and runs against the public
+[Alex U.S.A. Days login practice page](https://alexusadays.com/login).
+
+Use it to see the complete path from a human-readable specification to a
+Page Object-based Playwright test, including official Playwright subagents,
+repository skills, stable test naming, validation, and evidence-based healing.
+
+## Start here
+
+1. Read [the architecture](docs/ARCHITECTURE.md).
+2. Install the project and run `npm run check`.
+3. Read the two repository skills:
+   - [`$add-playwright-test`](skills/add-playwright-test/SKILL.md) plans,
+     generates, validates, and heals a flow.
+   - [`$name-playwright-test`](skills/name-playwright-test/SKILL.md) assigns
+     stable test case IDs, titles, and file names.
+4. Read [the official-agent prompts](docs/PLAYWRIGHT-AGENTS.md).
+5. Read [the guarded `test.fixme()` flow](docs/FIXME.md) before skipping any
+   scenario.
 
 ## The architecture
 
@@ -19,6 +37,8 @@ tests/          behavior    ───────▶  npm run check   evidence
 Playwright remains the deterministic test runner. The AI layer receives
 repository context, follows a reusable skill, writes inside established
 boundaries, executes the suite, and revises its work from traces and failures.
+For directory responsibilities and dependency rules, see
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Install and run
 
@@ -49,7 +69,8 @@ npm test
 
 ## Playwright Test Agents
 
-This project includes Playwright's official Codex agent definitions:
+This project includes Playwright's official Codex subagent definitions,
+generated from the installed Playwright version:
 
 - `playwright_test_planner` explores the application and saves a Markdown plan.
 - `playwright_test_generator` turns a plan into executable Playwright tests.
@@ -63,6 +84,11 @@ Regenerate them after upgrading Playwright:
 ```bash
 npx playwright init-agents --loop=codex
 ```
+
+This follows the
+[official Playwright Test Agents documentation](https://playwright.dev/docs/test-agents):
+planner starts from a seed test, generator consumes the saved Markdown plan,
+and healer works from a reproducible failing test.
 
 The generated agents are the Playwright integration. `AGENTS.md` supplies this
 repository's architectural constraints, while `skills/add-playwright-test/`
@@ -112,12 +138,36 @@ See [docs/LOCATORS.md](docs/LOCATORS.md).
 teaches an AI agent the repository-specific workflow. `AGENTS.md` defines the
 rules; the skill defines the repeatable procedure.
 
+[`skills/name-playwright-test/SKILL.md`](skills/name-playwright-test/SKILL.md)
+defines the test identity convention:
+
+```text
+AUTH-LOGIN-001
+tests/login/auth-login-001-valid-credentials.spec.ts
+test('AUTH-LOGIN-001 accepts documented demo credentials', ...)
+```
+
 A useful prompt is:
 
 > Use `$add-playwright-test` to add a logout test. Inspect the page first, keep
 > locators in the POM, and run the validation gate.
 
 See [docs/AI-WORKFLOW.md](docs/AI-WORKFLOW.md) for the complete loop.
+
+## When a product defect blocks a test
+
+`test.fixme()` is a visible product-defect marker, not a way to make CI green.
+Reproduce the problem, capture evidence, confirm the test and specification are
+correct, add the issue reference and observed behavior, and keep unaffected
+assertions running. Follow [docs/FIXME.md](docs/FIXME.md).
+
+## Related links
+
+- [Alex U.S.A. Days on YouTube](https://www.youtube.com/@alexusadays)
+- [QA practice site](https://alexusadays.com)
+- [Login practice page used by this repository](https://alexusadays.com/login)
+- [Playwright documentation](https://playwright.dev/docs/intro)
+- [Playwright Test Agents](https://playwright.dev/docs/test-agents)
 
 ## Inspiration and further reading
 

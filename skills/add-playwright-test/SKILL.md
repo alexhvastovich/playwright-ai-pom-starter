@@ -23,14 +23,16 @@ Invoke healer only if the gate fails for test-code reasons.
 2. Ask `playwright_test_planner` to explore the flow through
    `tests/seed.spec.ts` and save a precise Markdown plan.
 3. Review the plan for intent, independence, data safety, and expected results.
-4. Ask `playwright_test_generator` to implement one named scenario from the
+4. Use `$name-playwright-test` to assign the scenario's stable test case ID,
+   title, and file name.
+5. Ask `playwright_test_generator` to implement one named scenario from the
    plan while obeying the POM and locator contracts below.
-5. Move selectors and browser actions into a class in `pages/`.
-6. Add a lazy getter to `fixtures/pom.ts` when introducing a page object.
-7. Keep the generated test behavior-focused and import from `fixtures/pom`.
-8. Run the narrow test, then `npm run check`.
-9. If a test fails, inspect the trace, screenshot, DOM, and product behavior.
-10. Invoke `playwright_test_healer` only when evidence identifies test code as
+6. Move selectors and browser actions into a class in `pages/`.
+7. Add a lazy getter to `fixtures/pom.ts` when introducing a page object.
+8. Keep the generated test behavior-focused and import from `fixtures/pom`.
+9. Run the narrow test, then `npm run check`.
+10. If a test fails, inspect the trace, screenshot, DOM, and product behavior.
+11. Invoke `playwright_test_healer` only when evidence identifies test code as
     the responsible layer. Re-run the narrow test and full gate afterward.
 
 ## Test-id convention
@@ -84,8 +86,9 @@ Complete flow:
 - Never instantiate a page object inside a test.
 - Never add secrets, private URLs, or real user data.
 - Do not weaken an assertion merely to make a failure disappear.
-- Do not let the healer skip a test merely to make the gate green. A `fixme`
-  requires evidence that product behavior is broken and a written explanation.
+- Do not let the healer skip a test merely to make the gate green. Follow
+  `docs/FIXME.md`; a `fixme` requires a confirmed product defect, an issue
+  reference, evidence, and a written explanation.
 
 ## Failure loop
 
