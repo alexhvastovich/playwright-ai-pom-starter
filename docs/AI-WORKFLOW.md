@@ -21,7 +21,8 @@ Trace, screenshot, root-cause analysis
 - `specs/` records intent before implementation.
 - `pages/` owns locators and browser mechanics.
 - `pages/ManagePage.ts` owns lazy Page Object construction.
-- `fixtures/pom.fixture.ts` injects the manager and shared test data.
+- `fixtures/pom.fixture.ts` injects only the unified manager.
+- `test-data/` is imported directly by scenarios that need it.
 - `tests/` remain short and describe behavior.
 - `npm run check` is the gate. AI code does not bypass it.
 
