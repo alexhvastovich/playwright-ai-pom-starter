@@ -47,6 +47,27 @@ $env:BASE_URL = "https://example.test"
 npm test
 ```
 
+## Playwright Test Agents
+
+This project includes Playwright's official Codex agent definitions:
+
+- `playwright_test_planner` explores the application and saves a Markdown plan.
+- `playwright_test_generator` turns a plan into executable Playwright tests.
+- `playwright_test_healer` runs and repairs failing tests from browser evidence.
+
+The definitions live in `.codex/agents/` and use `tests/seed.spec.ts` to enter
+the public login flow through this repository's Page Object fixture.
+
+Regenerate them after upgrading Playwright:
+
+```bash
+npx playwright init-agents --loop=codex
+```
+
+The generated agents are the Playwright integration. `AGENTS.md` supplies this
+repository's architectural constraints, while `skills/add-playwright-test/`
+documents the local POM workflow and validation rules.
+
 ## Page Object Model
 
 Tests describe behavior:
