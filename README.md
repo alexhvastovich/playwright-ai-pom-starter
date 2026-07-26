@@ -68,6 +68,9 @@ The generated agents are the Playwright integration. `AGENTS.md` supplies this
 repository's architectural constraints, while `skills/add-playwright-test/`
 documents the local POM workflow and validation rules.
 
+See [docs/PLAYWRIGHT-AGENTS.md](docs/PLAYWRIGHT-AGENTS.md) for exact prompts
+that trigger planner, generator, healer, and the complete agentic loop.
+
 ## Page Object Model
 
 Tests describe behavior:

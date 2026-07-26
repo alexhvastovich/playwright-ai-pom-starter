@@ -1,6 +1,6 @@
 ---
 name: add-playwright-test
-description: Add or repair Playwright UI tests in this repository using its Page Object Model, lazy page-manager fixture, locator contract, and evidence-based validation. Use for new browser flows, regression tests, locator changes, failing UI tests, or requests to let an AI agent generate or heal a Playwright test.
+description: Plan, generate, validate, or heal Playwright UI tests in this repository using the official Playwright Test Agents, Page Object Model, lazy page-manager fixture, test-id convention, and evidence-based failure loop. Use for new browser flows, test plans, generated tests, locator changes, failing UI tests, or requests to run the planner, generator, or healer.
 ---
 
 # Add a Playwright test
@@ -8,16 +8,74 @@ description: Add or repair Playwright UI tests in this repository using its Page
 Follow the repository architecture. Treat generated code as a draft until it
 passes the same checks as human-written code.
 
-## Workflow
+## Select the agent
+
+- Use `playwright_test_planner` to explore a flow and save a plan in `specs/`.
+- Use `playwright_test_generator` to implement one scenario from that plan.
+- Use `playwright_test_healer` only after a reproducible test failure.
+
+For a complete new flow, run planner, then generator, then the validation gate.
+Invoke healer only if the gate fails for test-code reasons.
+
+## Complete flow
 
 1. Read `AGENTS.md` and the relevant file in `specs/`.
-2. Inspect the live page with Playwright before choosing locators.
-3. Prefer `getByTestId`, then `getByRole`, then `getByLabel`.
-4. Add selectors and browser actions to a class in `pages/`.
-5. Add a lazy getter to `fixtures/pom.ts` when introducing a page object.
-6. Write a short behavior-focused test that imports from `fixtures/pom`.
-7. Run the narrow test, then `npm run check`.
-8. Inspect the trace or screenshot before changing a failing locator.
+2. Ask `playwright_test_planner` to explore the flow through
+   `tests/seed.spec.ts` and save a precise Markdown plan.
+3. Review the plan for intent, independence, data safety, and expected results.
+4. Ask `playwright_test_generator` to implement one named scenario from the
+   plan while obeying the POM and locator contracts below.
+5. Move selectors and browser actions into a class in `pages/`.
+6. Add a lazy getter to `fixtures/pom.ts` when introducing a page object.
+7. Keep the generated test behavior-focused and import from `fixtures/pom`.
+8. Run the narrow test, then `npm run check`.
+9. If a test fails, inspect the trace, screenshot, DOM, and product behavior.
+10. Invoke `playwright_test_healer` only when evidence identifies test code as
+    the responsible layer. Re-run the narrow test and full gate afterward.
+
+## Test-id convention
+
+- Use `data-testid` as the product attribute and `getByTestId()` in Playwright.
+- Name IDs by stable meaning, not layout: `btn-login`, `input-email`,
+  `nav-user-menu`, `error-login`.
+- Use lowercase kebab-case with an element-role prefix.
+- Do not encode styling, position, generated IDs, or changing copy.
+- Do not add a test ID when `getByRole()` or `getByLabel()` is already unique
+  and stable.
+- Keep every locator in a Page Object. Tests never call `page.locator()`.
+
+Locator priority for this repository:
+
+1. `getByTestId()` for an explicit automation contract or ambiguous control.
+2. `getByRole()` with an accessible name.
+3. `getByLabel()` for labelled form fields.
+
+## Trigger prompts
+
+Planner:
+
+> Use the `playwright_test_planner` subagent. Start from
+> `tests/seed.spec.ts`, explore the logout flow, and save the plan under
+> `specs/`. Follow `AGENTS.md`.
+
+Generator:
+
+> Use the `playwright_test_generator` subagent to implement the logout
+> scenario from `specs/logout.md`. Keep locators and actions in Page Objects,
+> expose them through `pm`, and import the fixture in the test.
+
+Healer:
+
+> Use the `playwright_test_healer` subagent on the failing logout test.
+> Reproduce it, inspect trace and DOM evidence, classify the root cause, change
+> the smallest responsible layer, then run the narrow test and `npm run check`.
+
+Complete flow:
+
+> Use the official Playwright planner and generator subagents to plan and
+> implement the logout flow from `tests/seed.spec.ts`. Validate with
+> `npm run check`. If and only if a generated test fails because of test code,
+> use the healer, then re-run the complete gate.
 
 ## Non-negotiable rules
 
@@ -26,6 +84,8 @@ passes the same checks as human-written code.
 - Never instantiate a page object inside a test.
 - Never add secrets, private URLs, or real user data.
 - Do not weaken an assertion merely to make a failure disappear.
+- Do not let the healer skip a test merely to make the gate green. A `fixme`
+  requires evidence that product behavior is broken and a written explanation.
 
 ## Failure loop
 
@@ -33,7 +93,8 @@ When a test fails:
 
 1. Reproduce the failure.
 2. Classify it as product behavior, test data, environment, or test code.
-3. Inspect trace and DOM evidence.
-4. Change the smallest responsible layer.
-5. Re-run the narrow test and the full gate.
-
+3. Inspect trace, screenshot, DOM, network, and product evidence as relevant.
+4. Classify the responsible layer: product, specification, environment, data,
+   Page Object, or test.
+5. Change the smallest responsible layer.
+6. Re-run the narrow test and the full gate.

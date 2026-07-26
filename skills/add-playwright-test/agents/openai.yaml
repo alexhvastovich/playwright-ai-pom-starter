@@ -1,4 +1,4 @@
 interface:
-  display_name: "Add Playwright Test"
-  short_description: "Add POM-first Playwright tests safely"
-  default_prompt: "Use $add-playwright-test to add a tested browser flow without bypassing the page-object architecture."
+  display_name: "Playwright Agentic Test Flow"
+  short_description: "Plan, generate, validate, and heal POM tests"
+  default_prompt: "Use $add-playwright-test to run the official Playwright planner, generator, validation gate, and evidence-based healer flow."
