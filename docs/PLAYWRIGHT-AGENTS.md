@@ -45,14 +45,14 @@ Healer:
 ```text
 Use the playwright_test_healer subagent on the failing logout test. Reproduce
 the failure, inspect trace and DOM evidence, classify the root cause, change
-the smallest responsible layer, and run npm run check.
+the smallest responsible layer, and run npm test.
 ```
 
 ## Run the full agentic loop
 
 ```text
 Use the official Playwright planner and generator subagents to plan and
-implement the logout flow from seeds/login.seed.spec.ts. Validate with npm run check.
+implement the logout flow from seeds/login.seed.spec.ts. Validate with npm test.
 If and only if the generated test fails because of test code, invoke the
 healer, then rerun the narrow test and full gate.
 ```

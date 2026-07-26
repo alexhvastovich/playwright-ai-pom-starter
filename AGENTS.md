@@ -32,7 +32,7 @@ must explain what the element means, not how the current DOM happens to look.
 - Never use `waitForTimeout`.
 - Keep tests independent and safe to run in parallel.
 - Do not add secrets, real customer data, or private URLs.
-- Run `npm run check` before committing.
+- Run `npm test` before committing.
 - Follow `docs/FIXME.md`; never use `test.fixme()` solely to make the gate pass.
 
 ## AI workflow

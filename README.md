@@ -13,7 +13,7 @@ repository skills, stable test naming, validation, and evidence-based healing.
 ## Start here
 
 1. Read [the architecture](docs/ARCHITECTURE.md).
-2. Install the project and run `npm run check`.
+2. Install the project and run `npm test`.
 3. Read the two repository skills:
    - [`$add-playwright-test`](skills/add-playwright-test/SKILL.md) plans,
      generates, validates, and heals a flow.
@@ -31,7 +31,7 @@ Playwright scaffold                  AI orchestration layer
 specs/          intent      ───────▶  AGENTS.md       constraints
 pages/          POM         ───────▶  skill           workflow
 fixtures/       lazy PM     ───────▶  agent           implementation
-tests/          behavior    ───────▶  npm run check   evidence
+tests/          behavior    ───────▶  npm test        evidence
 ```
 
 Playwright remains the deterministic test runner. The AI layer receives

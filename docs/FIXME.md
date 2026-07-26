@@ -13,7 +13,7 @@ incorrect test code.
 5. Record the product issue in the team's issue tracker.
 6. Add `test.fixme()` with the issue ID and the observed product behavior.
 7. Keep the original expectation intact.
-8. Run `npm run check` and confirm unrelated scenarios still execute.
+8. Run `npm test` and confirm unrelated scenarios still execute.
 
 ## Form
 
@@ -42,5 +42,5 @@ The reason must contain:
 ## Removal
 
 When the product issue is fixed, remove only the annotation, run the narrow
-test, then run `npm run check`. Do not rewrite the expectation merely because
+test, then run `npm test`. Do not rewrite the expectation merely because
 the implementation changed.

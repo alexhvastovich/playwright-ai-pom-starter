@@ -24,7 +24,7 @@ Trace, screenshot, root-cause analysis
 - `fixtures/pom.fixture.ts` injects only the unified manager.
 - `test-data/` is imported directly by scenarios that need it.
 - `tests/` remain short and describe behavior.
-- `npm run check` is the gate. AI code does not bypass it.
+- `npm test` is the gate. AI code does not bypass it.
 
 The result is not “AI writes selectors.” The result is an agent that can inspect
 the product, respect the same design constraints as the team, run the suite,

@@ -31,7 +31,7 @@ Invoke healer only if the gate fails for test-code reasons.
 7. Add its lazy getter to `pages/ManagePage.ts`.
 8. Keep fixture wiring in `fixtures/pom.fixture.ts`.
 9. Keep the generated test behavior-focused and import from that fixture.
-10. Run the narrow test, then `npm run check`.
+10. Run the narrow test, then `npm test`.
 11. If a test fails, inspect the trace, screenshot, DOM, and product behavior.
 12. Invoke `playwright_test_healer` only when evidence identifies test code as
     the responsible layer. Re-run the narrow test and full gate afterward.
@@ -71,13 +71,13 @@ Healer:
 
 > Use the `playwright_test_healer` subagent on the failing logout test.
 > Reproduce it, inspect trace and DOM evidence, classify the root cause, change
-> the smallest responsible layer, then run the narrow test and `npm run check`.
+> the smallest responsible layer, then run the narrow test and `npm test`.
 
 Complete flow:
 
 > Use the official Playwright planner and generator subagents to plan and
 > implement the logout flow from `seeds/login.seed.spec.ts`. Validate with
-> `npm run check`. If and only if a generated test fails because of test code,
+> `npm test`. If and only if a generated test fails because of test code,
 > use the healer, then re-run the complete gate.
 
 ## Non-negotiable rules

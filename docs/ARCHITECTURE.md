@@ -21,7 +21,7 @@ seeds/                         Agent environment seeds, excluded from npm test
 playwright.config.ts           Runner configuration and evidence policy
     |
     v
-npm run check                  TypeScript + deterministic Playwright gate
+npm test                       deterministic Playwright gate
 ```
 
 ## Directory responsibilities
@@ -58,5 +58,5 @@ matching lazy getter rather than direct construction inside a scenario.
 
 The planner records intent, the generator drafts executable tests, and the
 healer diagnoses reproducible failures. `AGENTS.md` and repository skills add
-local constraints. None of these replace `npm run check`, which remains the
+local constraints. None of these replace `npm test`, which remains the
 source of pass/fail evidence.

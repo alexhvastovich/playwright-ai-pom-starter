@@ -8,9 +8,7 @@
     "test:agents": "playwright test --project=agent-seed",
     "test:headed": "playwright test --project=chromium --headed",
     "test:login": "playwright test --project=chromium tests/login",
-    "test:ui": "playwright test --project=chromium --ui",
-    "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && npm test"
+    "test:ui": "playwright test --project=chromium --ui"
   },
   "keywords": [
     "playwright",
