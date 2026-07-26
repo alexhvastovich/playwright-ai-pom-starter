@@ -15,11 +15,13 @@ export class LoginPage extends BasePage {
   }
 
   private get submitButton(): Locator {
-    return this.byTestId('btn-login');
+    // The accessible name changes from "Login" to "Logging in..." while the
+    // request is pending, so this control earns a stable product/test contract.
+    return this.page.getByTestId('btn-login');
   }
 
   private get errorMessage(): Locator {
-    return this.byTestId('login-error');
+    return this.page.getByRole('alert');
   }
 
   async open(): Promise<void> {

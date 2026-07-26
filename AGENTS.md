@@ -41,5 +41,6 @@ For a new flow, write or update a short specification in `specs/`, then use the
 same architecture and validation gates as human code.
 
 The official Playwright planner, generator, and healer definitions are in
-`.codex/agents/`. Use `tests/seed.spec.ts` as their environment seed. Generated
-test code must still follow this file's POM and locator contracts.
+`.codex/agents/`. Use `seeds/login.seed.spec.ts` through the `agent-seed`
+project as their environment seed. Generated test code must still follow this
+file's POM and locator contracts.

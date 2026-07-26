@@ -1,5 +1,5 @@
 // spec: specs/login.md
-// seed: tests/seed.spec.ts
+// seed: seeds/login.seed.spec.ts
 
 import { test } from '../../fixtures/pom';
 
@@ -9,5 +9,6 @@ test.describe('Authentication / Login', () => {
     await pm.login.expectLoaded();
     await pm.login.login('BestStudent', 'Password123!');
     await pm.login.expectLoginSucceeded();
+    await pm.secure.expectLoaded();
   });
 });

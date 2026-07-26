@@ -3,5 +3,7 @@ playwright-report/
 test-results/
 blob-report/
 .env
+.env.local
+.env.*.local
 .DS_Store
 
