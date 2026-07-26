@@ -40,10 +40,6 @@ export class LoginPage extends BasePage {
     await expect(this.submitButton).toBeEnabled();
   }
 
-  async expectLoginSucceeded(): Promise<void> {
-    await expect(this.page).toHaveURL(/\/secure(?:\.html)?(?:$|[?#])/);
-  }
-
   async expectError(message: string): Promise<void> {
     await expect(this.errorMessage).toBeVisible();
     await expect(this.errorMessage).toContainText(message);

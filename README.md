@@ -107,10 +107,9 @@ that trigger planner, generator, healer, and the complete agentic loop.
 Tests describe behavior:
 
 ```ts
-await pm.login.open();
-await pm.login.login('BestStudent', 'Password123!');
-await pm.login.expectLoginSucceeded();
-await pm.secure.expectLoaded();
+await pm.loginPage.open();
+await pm.loginPage.login(validUser.username, validUser.password);
+await pm.securePage.expectLoaded();
 ```
 
 The page object owns mechanics:
@@ -126,23 +125,38 @@ private get submitButton(): Locator {
 }
 ```
 
-The lazy page manager creates only the page objects a test actually uses and
-gives every test one consistent entry point: `pm`. `LoginPage` owns the login
-form, while `SecurePage` verifies that successful navigation rendered the
-authenticated destination.
+`pages/ManagePage.ts` contains the lazy `PomManager`.
+`fixtures/pom.fixture.ts` creates one manager per test and injects reusable data
+from `test-data/`. Tests receive one consistent entry point: `pm`.
+`LoginPage` owns the login form, while `SecurePage` verifies that successful
+navigation rendered the authenticated destination.
 
 ```ts
-get login(): LoginPage {
-  return this.loginPage ??= new LoginPage(this.page);
+get loginPage(): LoginPage {
+  return this.login ??= new LoginPage(this.page);
 }
 
-get secure(): SecurePage {
-  return this.securePage ??= new SecurePage(this.page);
+get securePage(): SecurePage {
+  return this.secure ??= new SecurePage(this.page);
 }
 ```
 
 No Page Object is constructed until its getter is first requested, and the
 same instance is reused for the rest of that test.
+
+```text
+pages/
+  BasePage.ts
+  LoginPage.ts
+  SecurePage.ts
+  ManagePage.ts          # lazy PomManager
+fixtures/
+  pom.fixture.ts         # test-scoped dependency injection
+test-data/
+  validUser.ts           # public-safe reusable data
+tests/
+  login/
+```
 
 ## Locators
 
