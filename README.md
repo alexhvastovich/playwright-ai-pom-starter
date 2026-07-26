@@ -76,8 +76,13 @@ generated from the installed Playwright version:
 - `playwright_test_generator` turns a plan into executable Playwright tests.
 - `playwright_test_healer` runs and repairs failing tests from browser evidence.
 
-The definitions live in `.codex/agents/` and use `tests/seed.spec.ts` to enter
-the public login flow through this repository's Page Object fixture.
+The definitions live in `.codex/agents/` and use
+`seeds/login.seed.spec.ts` through the dedicated `agent-seed` project. The seed
+does not inflate the normal test count:
+
+```bash
+npm run test:agents
+```
 
 Regenerate them after upgrading Playwright:
 
@@ -105,6 +110,7 @@ Tests describe behavior:
 await pm.login.open();
 await pm.login.login('BestStudent', 'Password123!');
 await pm.login.expectLoginSucceeded();
+await pm.secure.expectLoaded();
 ```
 
 The page object owns mechanics:
@@ -115,20 +121,27 @@ private get usernameInput(): Locator {
 }
 
 private get submitButton(): Locator {
-  return this.byTestId('btn-login');
+  // Its accessible name changes while the request is pending.
+  return this.page.getByTestId('btn-login');
 }
 ```
 
 The lazy page manager creates only the page objects a test actually uses and
-gives every test one consistent entry point: `pm`.
+gives every test one consistent entry point: `pm`. `LoginPage` owns the login
+form, while `SecurePage` verifies that successful navigation rendered the
+authenticated destination.
 
 ## Locators
 
 The project uses this order:
 
-1. `getByTestId` for an explicit product/test contract.
-2. `getByRole` for accessible interactive semantics.
-3. `getByLabel` for labelled form controls.
+1. `getByRole` for accessible interactive semantics.
+2. `getByLabel` for labelled form controls.
+3. `getByTestId` for an explicit product/test contract or ambiguous control.
+
+The login error demonstrates priority 1 with `getByRole('alert')`. The Login
+button deliberately uses `getByTestId('btn-login')` because its accessible name
+changes from “Login” to “Logging in...” while the request is pending.
 
 See [docs/LOCATORS.md](docs/LOCATORS.md).
 
@@ -151,6 +164,9 @@ A useful prompt is:
 
 > Use `$add-playwright-test` to add a logout test. Inspect the page first, keep
 > locators in the POM, and run the validation gate.
+
+Logout is deliberately left as the reader exercise: there is no committed
+`LogoutPage`, dashboard Page Object, or `specs/logout.md` to copy.
 
 See [docs/AI-WORKFLOW.md](docs/AI-WORKFLOW.md) for the complete loop.
 

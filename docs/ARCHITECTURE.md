@@ -16,6 +16,7 @@ fixtures/pom.ts                Test-scoped lazy Page Object manager
     |
     v
 tests/                         Short, behavior-focused scenarios
+seeds/                         Agent environment seeds, excluded from npm test
 playwright.config.ts           Runner configuration and evidence policy
     |
     v
@@ -30,6 +31,7 @@ npm run check                  TypeScript + deterministic Playwright gate
 | `pages/` | Locators and browser actions | Scenario-specific test data |
 | `fixtures/` | Test-scoped object construction | Product behavior |
 | `tests/` | Scenario flow and outcomes | Raw selectors or page construction |
+| `seeds/` | Planner/generator environment entry points | Product coverage |
 | `skills/` | Repeatable agent procedures | Generated agent definitions |
 | `.codex/agents/` | Playwright-generated subagents | Repository conventions |
 

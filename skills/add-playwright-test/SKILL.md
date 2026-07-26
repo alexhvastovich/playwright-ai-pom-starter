@@ -21,7 +21,7 @@ Invoke healer only if the gate fails for test-code reasons.
 
 1. Read `AGENTS.md` and the relevant file in `specs/`.
 2. Ask `playwright_test_planner` to explore the flow through
-   `tests/seed.spec.ts` and save a precise Markdown plan.
+   `seeds/login.seed.spec.ts` and save a precise Markdown plan.
 3. Review the plan for intent, independence, data safety, and expected results.
 4. Use `$name-playwright-test` to assign the scenario's stable test case ID,
    title, and file name.
@@ -57,7 +57,7 @@ Locator priority for this repository:
 Planner:
 
 > Use the `playwright_test_planner` subagent. Start from
-> `tests/seed.spec.ts`, explore the logout flow, and save the plan under
+> `seeds/login.seed.spec.ts`, explore the logout flow, and save the plan under
 > `specs/`. Follow `AGENTS.md`.
 
 Generator:
@@ -75,7 +75,7 @@ Healer:
 Complete flow:
 
 > Use the official Playwright planner and generator subagents to plan and
-> implement the logout flow from `tests/seed.spec.ts`. Validate with
+> implement the logout flow from `seeds/login.seed.spec.ts`. Validate with
 > `npm run check`. If and only if a generated test fails because of test code,
 > use the healer, then re-run the complete gate.
 

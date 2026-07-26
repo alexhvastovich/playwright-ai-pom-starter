@@ -21,15 +21,15 @@ Prefer a conditional annotation inside the test so setup and unaffected logic
 remain visible:
 
 ```ts
-test('AUTH-LOGOUT-001 signs out an authenticated user', async ({ pm }) => {
+test('AUTH-LOGIN-001 accepts documented demo credentials', async ({ pm }) => {
   test.fixme(
     true,
-    'BUG-142: Logout returns 500; expected redirect to /login.',
+    'BUG-142: Valid login returns 500; expected the secure page.',
   );
 
-  await pm.dashboard.open();
-  await pm.dashboard.logout();
-  await pm.login.expectLoaded();
+  await pm.login.open();
+  await pm.login.login('BestStudent', 'Password123!');
+  await pm.secure.expectLoaded();
 });
 ```
 

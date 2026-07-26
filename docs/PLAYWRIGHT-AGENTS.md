@@ -15,7 +15,7 @@ npx playwright init-agents --loop=codex
 ```
 
 The generated definitions are in `.codex/agents/`. The environment seed is
-`tests/seed.spec.ts`.
+`seeds/login.seed.spec.ts`, executed through the `agent-seed` project.
 
 Source: [Playwright Test Agents](https://playwright.dev/docs/test-agents).
 Do not hand-maintain generated agent definitions. Regenerate them with the
@@ -28,7 +28,7 @@ Ask Codex by the generated agent name.
 Planner:
 
 ```text
-Use the playwright_test_planner subagent. Start from tests/seed.spec.ts,
+Use the playwright_test_planner subagent. Start from seeds/login.seed.spec.ts,
 explore the logout flow, and save a plan under specs/. Follow AGENTS.md.
 ```
 
@@ -52,7 +52,7 @@ the smallest responsible layer, and run npm run check.
 
 ```text
 Use the official Playwright planner and generator subagents to plan and
-implement the logout flow from tests/seed.spec.ts. Validate with npm run check.
+implement the logout flow from seeds/login.seed.spec.ts. Validate with npm run check.
 If and only if the generated test fails because of test code, invoke the
 healer, then rerun the narrow test and full gate.
 ```
@@ -72,3 +72,9 @@ produces deterministic failures, traces, screenshots, and pass results.
 Generated and healed code must still obey `AGENTS.md` and
 `skills/add-playwright-test/SKILL.md`. A green result is not permission to use
 weak selectors, hard waits, duplicated actions, or skipped tests.
+
+## Reader exercise
+
+Logout is intentionally not implemented in this starter. The prompts above ask
+the reader to create `specs/logout.md`, the required Page Object behavior, and
+the test. They do not refer to code that is supposed to already exist.

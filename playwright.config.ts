@@ -2,11 +2,10 @@ import 'dotenv/config';
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './tests',
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 2 : undefined,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     baseURL: process.env.BASE_URL ?? 'https://alexusadays.com',
@@ -17,6 +16,12 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
+      testDir: './tests',
+      use: { ...devices['Desktop Chrome'] }
+    },
+    {
+      name: 'agent-seed',
+      testDir: './seeds',
       use: { ...devices['Desktop Chrome'] }
     }
   ]

@@ -4,10 +4,11 @@
   "private": false,
   "description": "A public teaching project for Playwright, Page Objects, resilient locators, and AI coding skills.",
   "scripts": {
-    "test": "playwright test",
-    "test:headed": "playwright test --headed",
-    "test:login": "playwright test tests/login",
-    "test:ui": "playwright test --ui",
+    "test": "playwright test --project=chromium",
+    "test:agents": "playwright test --project=agent-seed",
+    "test:headed": "playwright test --project=chromium --headed",
+    "test:login": "playwright test --project=chromium tests/login",
+    "test:ui": "playwright test --project=chromium --ui",
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm test"
   },

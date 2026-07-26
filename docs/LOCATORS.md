@@ -15,8 +15,14 @@ The login page demonstrates both sides of the contract:
 
 ```ts
 this.page.getByLabel('Username');
-this.byTestId('btn-login');
+this.page.getByRole('alert');
+this.page.getByTestId('btn-login');
 ```
+
+The error uses its ARIA alert role, verifying the message is announced as an
+error. The Login button earns a test ID because its accessible name changes to
+“Logging in...” during submission; a role-and-name locator would not remain
+stable across that action.
 
 The test never sees either locator. It asks the page object to perform a
 business action:

@@ -1,5 +1,5 @@
 // spec: specs/login.md
-// seed: tests/seed.spec.ts
+// seed: seeds/login.seed.spec.ts
 
 import { test } from '../../fixtures/pom';
 
