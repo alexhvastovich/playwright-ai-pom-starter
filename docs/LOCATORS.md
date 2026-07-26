@@ -4,9 +4,9 @@ Locators are an interface between the product and the test suite.
 
 | Priority | Locator | Use |
 | --- | --- | --- |
-| 1 | `getByTestId()` | Explicit automation contracts and ambiguous controls |
-| 2 | `getByRole()` | Buttons, links, headings, dialogs, and other semantics |
-| 3 | `getByLabel()` | Properly labelled form controls |
+| 1 | `getByRole()` | Buttons, links, headings, dialogs, and other semantics |
+| 2 | `getByLabel()` | Properly labelled form controls |
+| 3 | `getByTestId()` | Explicit automation contracts and ambiguous controls |
 
 This project deliberately avoids CSS classes and XPath. Visual styling changes
 often; user-facing meaning should change much less frequently.
@@ -24,4 +24,3 @@ business action:
 ```ts
 await pm.login.login('BestStudent', 'Password123!');
 ```
-

@@ -15,9 +15,9 @@ small, public-safe, and runnable against `https://alexusadays.com`.
 
 Use the most user-facing stable locator available:
 
-1. `getByTestId` for explicit automation contracts.
-2. `getByRole` with an accessible name.
-3. `getByLabel` for labelled form fields.
+1. `getByRole` with an accessible name.
+2. `getByLabel` for labelled form fields.
+3. `getByTestId` for explicit automation contracts or ambiguous controls.
 
 Do not use XPath, CSS classes, `nth-child`, or long text selectors. A locator
 must explain what the element means, not how the current DOM happens to look.

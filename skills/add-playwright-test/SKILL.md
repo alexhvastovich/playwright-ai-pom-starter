@@ -46,9 +46,9 @@ Invoke healer only if the gate fails for test-code reasons.
 
 Locator priority for this repository:
 
-1. `getByTestId()` for an explicit automation contract or ambiguous control.
-2. `getByRole()` with an accessible name.
-3. `getByLabel()` for labelled form fields.
+1. `getByRole()` with an accessible name.
+2. `getByLabel()` for labelled form fields.
+3. `getByTestId()` for an explicit automation contract or ambiguous control.
 
 ## Trigger prompts
 
