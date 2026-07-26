@@ -17,6 +17,10 @@ npx playwright init-agents --loop=codex
 The generated definitions are in `.codex/agents/`. The environment seed is
 `tests/seed.spec.ts`.
 
+Source: [Playwright Test Agents](https://playwright.dev/docs/test-agents).
+Do not hand-maintain generated agent definitions. Regenerate them with the
+installed Playwright version and review the resulting diff.
+
 ## Trigger one agent
 
 Ask Codex by the generated agent name.
@@ -52,6 +56,9 @@ implement the logout flow from tests/seed.spec.ts. Validate with npm run check.
 If and only if the generated test fails because of test code, invoke the
 healer, then rerun the narrow test and full gate.
 ```
+
+If evidence instead shows a product defect, do not ask the healer to rewrite a
+correct expectation. Follow [the `test.fixme()` flow](FIXME.md).
 
 The planner and generator can run independently for unrelated flows. Do not run
 multiple agents against the same Page Object or test file concurrently.

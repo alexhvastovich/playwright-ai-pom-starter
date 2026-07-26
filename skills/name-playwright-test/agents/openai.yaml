@@ -1,0 +1,4 @@
+interface:
+  display_name: "Name Playwright Test"
+  short_description: "Apply stable test IDs and naming conventions"
+  default_prompt: "Use $name-playwright-test to assign a stable test case ID and repository-compliant name to this Playwright scenario."

@@ -25,11 +25,14 @@ must explain what the element means, not how the current DOM happens to look.
 ## Test rules
 
 - Import `test` and `expect` from `fixtures/pom`.
+- Apply `skills/name-playwright-test/SKILL.md` to every new or renamed scenario.
+- Keep the same stable test case ID in the spec, file name, and test title.
 - Use web-first assertions.
 - Never use `waitForTimeout`.
 - Keep tests independent and safe to run in parallel.
 - Do not add secrets, real customer data, or private URLs.
 - Run `npm run check` before committing.
+- Follow `docs/FIXME.md`; never use `test.fixme()` solely to make the gate pass.
 
 ## AI workflow
 
