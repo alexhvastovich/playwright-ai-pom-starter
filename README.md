@@ -119,6 +119,22 @@ A useful prompt is:
 
 See [docs/AI-WORKFLOW.md](docs/AI-WORKFLOW.md) for the complete loop.
 
+## Inspiration and further reading
+
+This repository is an original, deliberately small teaching implementation.
+The architectural framing was informed by:
+
+- [Playwright Test Agents](https://playwright.dev/docs/test-agents) for the
+  official planner, generator, and healer agent loop.
+- [Ivan Davidov's public AI-Native Playwright Scaffold](https://github.com/idavidov13/Playwright-Scaffold-AI-Assisted-Development-Public)
+  and [ArchQA writing](https://idavidov.eu/) for the separation between a
+  deterministic Playwright scaffold and an agent orchestration layer.
+- [Debbie O'Brien](https://debbie.codes/) for practical work on Playwright,
+  agent skills, MCP-based workflows, and code-driven educational content.
+
+Their projects are references, not source dependencies; this repository's code,
+tests, documentation, and public demo target are its own.
+
 ## What was intentionally excluded
 
 This teaching repository contains no copied application code, private URLs,
