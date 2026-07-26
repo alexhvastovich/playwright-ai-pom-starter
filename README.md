@@ -131,6 +131,19 @@ gives every test one consistent entry point: `pm`. `LoginPage` owns the login
 form, while `SecurePage` verifies that successful navigation rendered the
 authenticated destination.
 
+```ts
+get login(): LoginPage {
+  return this.loginPage ??= new LoginPage(this.page);
+}
+
+get secure(): SecurePage {
+  return this.securePage ??= new SecurePage(this.page);
+}
+```
+
+No Page Object is constructed until its getter is first requested, and the
+same instance is reused for the rest of that test.
+
 ## Locators
 
 The project uses this order:
