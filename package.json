@@ -1,0 +1,31 @@
+{
+  "name": "playwright-ai-pom-starter",
+  "version": "1.0.0",
+  "private": false,
+  "description": "A public teaching project for Playwright, Page Objects, resilient locators, and AI coding skills.",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:login": "playwright test tests/login",
+    "test:ui": "playwright test --ui",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm test"
+  },
+  "keywords": [
+    "playwright",
+    "testing",
+    "page-object-model",
+    "ai",
+    "codex",
+    "qa-automation"
+  ],
+  "author": "Alex Khvastovich",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.0.0",
+    "dotenv": "^17.0.0",
+    "typescript": "^5.9.0"
+  }
+}
+

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Add Playwright Test"
+  short_description: "Add POM-first Playwright tests safely"
+  default_prompt: "Use $add-playwright-test to add a tested browser flow without bypassing the page-object architecture."

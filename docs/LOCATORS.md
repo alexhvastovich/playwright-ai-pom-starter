@@ -1,0 +1,27 @@
+# Locator strategy
+
+Locators are an interface between the product and the test suite.
+
+| Priority | Locator | Use |
+| --- | --- | --- |
+| 1 | `getByTestId()` | Explicit automation contracts and ambiguous controls |
+| 2 | `getByRole()` | Buttons, links, headings, dialogs, and other semantics |
+| 3 | `getByLabel()` | Properly labelled form controls |
+
+This project deliberately avoids CSS classes and XPath. Visual styling changes
+often; user-facing meaning should change much less frequently.
+
+The login page demonstrates both sides of the contract:
+
+```ts
+this.page.getByLabel('Username');
+this.byTestId('btn-login');
+```
+
+The test never sees either locator. It asks the page object to perform a
+business action:
+
+```ts
+await pm.login.login('BestStudent', 'Password123!');
+```
+
