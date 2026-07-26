@@ -47,6 +47,11 @@ test -> pm fixture -> Page Object -> Playwright Page
 This keeps a selector change inside one Page Object and prevents generated
 tests from inventing competing patterns.
 
+`PageManager` is test-scoped and lazy: each getter constructs its Page Object
+on first access with `??=` and reuses that instance for the remainder of the
+test. Adding a Page Object requires a matching lazy getter rather than direct
+construction inside a scenario.
+
 ## AI boundary
 
 The planner records intent, the generator drafts executable tests, and the
